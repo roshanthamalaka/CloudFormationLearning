@@ -13,5 +13,19 @@ Resources: # Declare What cloudfromation need to be provision
         - Env: Dev
           Owner: roshan
   HubVPCPublicSubnet: 
-    
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref HubVPC # Using Ref Intrinsic Function Refer previously created HubVPC using Resource name above 
+      CidrBlock: 172.16.0.0
+      Ipv4NetmaskLength: 24
+      AvailabilityZoneId: us-east-1a
+  HubVPCPrivateSubnet: 
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref HubVPC
+      CidrBlock: 172.16.1.0
+      Ipv4NetmaskLength: 24
+      AvailabilityZoneId: us-east-1a
+      
+
       
