@@ -44,6 +44,6 @@ In stack click on update. Then Choose **Replace exisisting template** option. Th
 
 In the Stack if we go to the template section We can see the Template which is used to provision the stack. In here if We click on "View in Infrastructure Composer" we can see graphical representation of resoruce 
 
-![Project Screenshot](assets/template1.png "Template Section")
+![Project Screenshot](assets/Template1.png "Template Section")
 
-![Project Screenshot](assets/template2.png "Infrastructure Composer")
+![Project Screenshot](assets/Template2.png "Infrastructure Composer")
