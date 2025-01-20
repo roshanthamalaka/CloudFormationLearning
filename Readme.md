@@ -15,3 +15,10 @@ https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/mappings-section-
 
 Outputs used to declares output values that we can import into other cloudfromation stacks
 https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html 
+
+Instrinsic Func !Ref Can be used to reference 
+    1. Parameters 
+    2. Previously created resource value
+
+Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html 
+Ref Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
