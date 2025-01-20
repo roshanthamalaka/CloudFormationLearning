@@ -4,28 +4,26 @@ Resources: # Declare What cloudfromation need to be provision
   HubVPC: # This the Resource Name used in the temp
     Type: AWS::EC2::VPC # Resource Type. Refer Template Reference -> Resource and Property Reference to define this https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
     Properties:
-      CidrBlock: 172.16.0.0
+      CidrBlock: 172.16.0.0/16
       EnableDnsHostnames: true
       EnableDnsSupport: true
-      InstanceTenancy: default 
-      Ipv4NetmaskLength: 16
-      Tags: 
-        - Env: Dev
-          Owner: roshan
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: HubVPC
   HubVPCPublicSubnet: 
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: !Ref HubVPC # Using Ref Intrinsic Function Refer previously created HubVPC using Resource name above 
-      CidrBlock: 172.16.0.0
-      Ipv4NetmaskLength: 24
-      AvailabilityZoneId: us-east-1a
+      VpcId: !Ref HubVPC   # Using Ref Intrinsic Function Refer previously created HubVPC using Resource name above 
+      CidrBlock: 172.16.0.0/24
+      AvailabilityZoneId: apse2-az1
   HubVPCPrivateSubnet: 
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref HubVPC
-      CidrBlock: 172.16.1.0
-      Ipv4NetmaskLength: 24
-      AvailabilityZoneId: us-east-1a
+      CidrBlock: 172.16.1.0/24
+      AvailabilityZoneId: apse2-az1 #Specify the Zone ID not the Zone name here
+
       
 
       
