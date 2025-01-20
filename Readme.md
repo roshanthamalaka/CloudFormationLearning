@@ -2,10 +2,17 @@ This is repo is created for Practising the CloudFormation. Templates in this rep
 
 ![Project Screenshot](assets/screenshot.png "Architecture")
 
+
 It has Two VPC each has a public and private subnet. Public Subnet has a IGW and Nat Gateway. EC2 instances will be deployed to Each Subnet in order to test connectivity. SG will be deployed to allow traffic 
 
-In the CloudFormation Template Resource section describes what resource should be deployed. 
-Refer AWS documentation https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html for template and it is property (Resource has multiple Properties for example VPC as CIDR,Subnet ..etc). IF we search here VPC resource will not be available. It is under EC2.
+**Writing Basic Cloudformation Template**
+
+In the CloudFormation Template Resource section describes what resource should be deployed.It is the one of mandatory parameters
+
+
+Refer AWS documentation https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html for all the supported resources types and it is property types (Resource has multiple Properties for example VPC as CIDR,Subnet ..etc). 
+
+IF we search here VPC resource will not be available. It is under EC2.
 
 Parameters used pass user input to the template 
 https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html  

@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Example Templates that will deploy two VPCS 
-Resources: # Declare What cloudfromation need to be provision
+Resources: # Declare What cloudfromation need to be provision one of the compolosory thing
   HubVPC: # This the Resource Name used in the temp
     Type: AWS::EC2::VPC # Resource Type. Refer Template Reference -> Resource and Property Reference to define this https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
     Properties:
