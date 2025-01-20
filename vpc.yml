@@ -10,20 +10,54 @@ Resources: # Declare What cloudfromation need to be provision
       InstanceTenancy: default
       Tags:
         - Key: Name
-          Value: HubVPC
+          Value: HubVPC # Array is Key Value Pair
   HubVPCPublicSubnet: 
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref HubVPC   # Using Ref Intrinsic Function Refer previously created HubVPC using Resource name above 
       CidrBlock: 172.16.0.0/24
-      AvailabilityZoneId: apse2-az1
+      AvailabilityZoneId: apse2-
+      Tags:
+         - Key: Name
+           Value: HubPublic
   HubVPCPrivateSubnet: 
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref HubVPC
       CidrBlock: 172.16.1.0/24
       AvailabilityZoneId: apse2-az1 #Specify the Zone ID not the Zone name here
-
+      Tags:
+         - Key: Name
+           Value: HubPrivate
+  SpokeVPC:
+    Type: AWS::EC2::VPC # Resource Type. Refer Template Reference -> Resource and Property Reference to define this https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
+    Properties:
+      CidrBlock: 192.168.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: SpokeVPC
+  SpokeVPCPublicSubnet: 
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref SpokeVPC   # Using Ref Intrinsic Function Refer previously created HubVPC using Resource name above 
+      CidrBlock: 192.168.0.0/24
+      AvailabilityZoneId: apse2-az1
+      Tags:
+         - Key: Name
+           Value: SpokePublic
+  SpokeVPCPrivateSubnet: 
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref SpokeVPC   # Using Ref Intrinsic Function Refer previously created HubVPC using Resource name above 
+      CidrBlock: 192.168.1.0/24
+      AvailabilityZoneId: apse2-az1
+      Tags:
+         - Key: Name
+           Value: SpokePrivate
+  
       
 
       
