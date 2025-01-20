@@ -16,7 +16,7 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
     Properties:
       VpcId: !Ref HubVPC   # Using Ref Intrinsic Function Refer previously created HubVPC using Resource name above 
       CidrBlock: 172.16.0.0/24
-      AvailabilityZoneId: apse2-
+      AvailabilityZoneId: apse2-az1
       Tags:
          - Key: Name
            Value: HubPublic
