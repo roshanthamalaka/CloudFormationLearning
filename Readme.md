@@ -83,5 +83,6 @@ Each Output has
 Once the template run in the cloudformation Console we can see the output values in the Outputs section in the stack.Refer below Screenshot.
 ![Project Screenshot](assets/OutputsInCLoudFormation.png "Outputs in Cloudformation")
 
-<u> Import usage </u>
-Once the outputs are defined it can be imported to other stack. If you look at routetables.yml which used to create RouteTable Stack using **ImportValue** Function and use the name of the outputs defined in the VPC stack (in the vpc.yml file) we have referenced the VPC ID for each VPC
+<u> Import usage </u> 
+
+Once the outputs are defined it can be imported to other stack. If you look at **routetables.yml** which used to create RouteTable Stack using **ImportValue** Function and use the name of the outputs defined in the VPC stack (in the vpc.yml file) we have referenced the VPC ID for each VPC
