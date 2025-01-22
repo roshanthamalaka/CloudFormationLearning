@@ -20,6 +20,7 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
       Tags:
          - Key: Name
            Value: HubPublic
+    DependsOn: HubVPC
   HubVPCPrivateSubnet: 
     Type: AWS::EC2::Subnet
     Properties:
@@ -29,6 +30,7 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
       Tags:
          - Key: Name
            Value: HubPrivate
+    DependsOn: HubVPC
   SpokeVPC:
     Type: AWS::EC2::VPC # Resource Type. Refer Template Reference -> Resource and Property Reference to define this https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
     Properties:
@@ -48,6 +50,7 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
       Tags:
          - Key: Name
            Value: SpokePublic
+    DependsOn: SpokeVPC
   SpokeVPCPrivateSubnet: 
     Type: AWS::EC2::Subnet
     Properties:
@@ -57,7 +60,18 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
       Tags:
          - Key: Name
            Value: SpokePrivate
-  
+    DependsOn: SpokeVPC
+Outputs:
+        HubVPCID: # Output Logical ID 
+          Description: Hub VPC ID
+          Value: !Ref HubVPC  # Logical ID/Name of the HubVPC passed to Ref function so VPC ID is returned
+          Export: 
+              Name: HubVPCID # Name of the Output Value. This name should be used with ImporValue function
+        SpokeVPCID: 
+          Description: Spoke VPC ID
+          Value: !Ref SpokeVPC 
+          Export: 
+              Name: SpokeVCPID
       
 
       

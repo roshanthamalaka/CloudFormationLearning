@@ -54,3 +54,34 @@ In the Stack if we go to the template section We can see the Template which is u
 ![Project Screenshot](assets/Template1.png "Template Section")
 
 ![Project Screenshot](assets/Template2.png "Infrastructure Composer")
+
+**Managing Dependecny Between Resources** 
+
+Situation where  Resource B depends on Resource A. When Cloudfromation try to deploy resources it is unable to identify which resource should deploy first. This where encounter an error saying **Circular dependency between resources:**. 
+https://aws.amazon.com/blogs/infrastructure-and-automation/handling-circular-dependency-errors-in-aws-cloudformation/ 
+
+In order to avoid this we have use DependsOn. This is similar with Terraform depends_on parameter. Refer Depends on Documentation below for clarity.
+ https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html
+
+ See vpc.yml on how we use Depends to avoid this error.
+
+**Output and Imports in Cloudformation** 
+
+Let say you have created VPC in one stack. Now you want to create route tables in another stack. In this scenario how to Pass VPCID in VPCStack to Route Table Stack. This is the place where output and import come into play.
+
+Output Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html 
+Import Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html 
+
+If you refer vpc.yml you can see that There is Seperate section called outputs after resource declaration.
+
+Each Output has 
+    1. Output Logical ID / Logical Name
+    2. Description
+    3. Value : Value of  the property returned. In here we want return VPC ID. So Passed VPC logical name as the value with Ref function. When Pass Ref function with LogicalName of the resource it Returns the Resource ID. So we pass the  Logical Name  of the VPC Resource so it should return ID.
+    4. Export: Here specify name of the output. This name should be globally unique with in the region were cloudformation stack deployed. Using this name we can use this output in other stack
+
+Once the template run in the cloudformation Console we can see the output values in the Outputs section in the stack.Refer below Screenshot.
+![Project Screenshot](assets/OutputsInCLoudFormation.png "Outputs in Cloudformation")
+
+<u> Import usage </u>
+Once the outputs are defined it can be imported to other stack. If you look at routetables.yml which used to create RouteTable Stack using **ImportValue** Function and use the name of the outputs defined in the VPC stack (in the vpc.yml file) we have referenced the VPC ID for each VPC

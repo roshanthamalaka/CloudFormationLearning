@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Example Template which will deploy Route Tables for Hub Spoke VPC Subnets
+Resources: 
+  HubPublicRouteTB:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:  !ImportValue HubVPCID
+      Tags:
+      - Key: Name
+        Value: HubPublicRouteTable
+  HubPrivateRouteTB:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:  !ImportValue HubVPCID
+      Tags:
+      - Key: Name
+        Value: HubPrivateRouteTable
