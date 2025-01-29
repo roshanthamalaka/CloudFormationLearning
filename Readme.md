@@ -30,7 +30,8 @@ Instrinsic Func !Ref Can be used to reference
     
 Whenever Logical ID/Name is passed to Ref function resource ID is returned. See templates Ref function usage
 
-Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html 
+Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html
+
 Ref Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.
 
 Examine vpc.yml for identify use of intrinsic function Ref, Creation of basic template.
@@ -79,8 +80,11 @@ If you refer vpc.yml you can see that There is Seperate section called outputs a
 
 Each Output has 
     1. Output Logical ID / Logical Name
+
     2. Description
+
     3. Value : Value of  the property returned. In here we want return VPC ID. So Passed VPC logical name as the value with Ref function. When Pass Ref function with LogicalName of the resource it Returns the Resource ID. So we pass the  Logical Name  of the VPC Resource so it should return ID.
+    
     4. Export: Here specify name of the output. This name should be globally unique with in the region were cloudformation stack deployed. Using this name we can use this output in other stack
 
 Once the template run in the cloudformation Console we can see the output values in the Outputs section in the stack.Refer below Screenshot.
