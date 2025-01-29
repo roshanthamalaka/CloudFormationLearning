@@ -26,6 +26,7 @@ https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-s
 Instrinsic Func !Ref Can be used to reference 
     1. Parameters 
     2. Previously created resource value
+Whenever Logical ID/Name is passed to Ref function resource ID is returned. See templates Ref function usage
 
 Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html 
 Ref Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.
