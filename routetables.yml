@@ -15,3 +15,14 @@ Resources:
       Tags:
       - Key: Name
         Value: HubPrivateRouteTable
+Outputs:
+    HubPublicRouteTBID: 
+        Description: Hub Public Route Table 
+        Value: !Ref HubPublicRouteTB # Logical ID/Name of Route Table is passed so Route Table id is returned to Value parameter
+        Export:
+            Name: HubPublicRouteTBID
+    HubPrivateRouteTBID: 
+        Description: Hub Public Route Table 
+        Value: !Ref HubPrivateRouteTB
+        Export:
+            Name: HubPrivateRouteTBID
