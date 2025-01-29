@@ -85,6 +85,17 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
       RouteTableId: !ImportValue SpokePrivateRouteTBID # Import the Route Table Value from Route Table stack Template
       SubnetId: !Ref SpokeVPCPrivateSubnet
     DependsOn: SpokeVPCPrivateSubnet
+  HubtoSpokePeering: # Peering Creation Logical Name
+    Type: AWS::EC2::VPCPeeringConnection
+    Properties:
+      #PeerOwnerId: String This Account ID Used when Cross Account 
+      #PeerRegion: String  This required when do cross region Peering
+      #PeerRoleArn: String Required when do cross region peering
+      VpcId: !Ref HubVPC
+      PeerVpcId: !Ref SpokeVPC
+      Tags: 
+        - Key: Name
+          Value: hub-to-spoke-peering
 Outputs:
         HubVPCID: # Output Logical ID 
           Description: Hub VPC ID
