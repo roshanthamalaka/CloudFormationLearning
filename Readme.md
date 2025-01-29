@@ -85,4 +85,31 @@ Once the template run in the cloudformation Console we can see the output values
 
 <u> Import usage </u> 
 
-Once the outputs are defined it can be imported to other stack. If you look at **routetables.yml** which used to create RouteTable Stack using **ImportValue** Function and use the name of the outputs defined in the VPC stack (in the vpc.yml file) we have referenced the VPC ID for each VPC
+Once the outputs are defined it can be imported to other stack. If you look at **routetables.yml** which used to create RouteTable Stack using **ImportValue** Function and use the name of the outputs defined in the VPC stack (in the vpc.yml file) we have referenced the VPC ID for each 
+
+
+**Change  Sets** 
+
+Change sets allowed view what it is going happen when we are going to update an stack. So that we can update with confidence
+
+Go to the Stack we are going to  update.Here you will see a tab for change sets. Refer below screenfor more clarity.
+![Project Screenshot](assets/CloudfromationStack.png "Cloudformation Change Set")
+
+Click on it. If previously change sets was not created shows as "Empty Change set Create change set". Also you you can click on stack actions and then click on create change set for current stack. Select Either Option.
+![Project Screenshot](assets/ChangeSetimage2.png "Cloudformation Change Set Creation")
+
+Then As usual select replace exsisting template. Refer below screenshot for more clarity
+![Project Screenshot](assets/ChangeSetimage2.png "Cloudformation Change Set Creation")
+
+Then Have to give change set a name or can keep the automatically generated change set name. Refer below screenshot.In this case I have choose Automatically Generated name.
+![Project Screenshot](assets/ChangeSetnameGiving.png "Give Cloudformation Change Set a name")
+
+Keep Default options for "Configure Stack Options section". Then Review everything and click on Submit.
+
+Then Change set will be created. It will show what are the changes going to happen.Refer below screenshot. Since I am updating route table association it will show route table ID. Keep Note that Logical ID/Name in the template also shown as property.
+![Project Screenshot](assets/ChangesetCreated.png "Change Set Created")
+
+IF we click View Details can see what is going to be changed in more details as well.
+![Project Screenshot](assets/PropertyLevelChange.png "Property Level Changes")
+
+IF you are ok with the change click on "Execute Change Set on top". After that it will update the stack
