@@ -64,7 +64,7 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
   HubVPCPublicSubnetRTAssociation: 
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !ImportValue HubPrivateRouteTBID # Import the Route Table Value from Route Table stack Template
+      RouteTableId: !ImportValue HubPublicRouteTBID # Import the Route Table Value from Route Table stack Template
       SubnetId: !Ref HubVPCPublicSubnet
     DependsOn: HubVPCPublicSubnet
   HubVPCPrivateSubnetRTAssociation: 
