@@ -79,12 +79,13 @@ Import Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserG
 If you refer vpc.yml you can see that There is Seperate section called outputs after resource declaration.
 
 Each Output has 
+
     1. Output Logical ID / Logical Name
 
     2. Description
 
-    3. Value : Value of  the property returned. In here we want return VPC ID. So Passed VPC logical name as the value with Ref function. When Pass Ref function with LogicalName of the resource it Returns the Resource ID. So we pass the  Logical Name  of the VPC Resource so it should return ID.
-    
+    3. Value : Value of  the property returned. In here we want return VPC ID. So Passed VPC logical name as the value with Ref function. When Pass Ref function with LogicalName of the resource it Returns the Resource ID. So we pass the  Logical Name  of the VPC Resource so it should return VPCID.
+
     4. Export: Here specify name of the output. This name should be globally unique with in the region were cloudformation stack deployed. Using this name we can use this output in other stack
 
 Once the template run in the cloudformation Console we can see the output values in the Outputs section in the stack.Refer below Screenshot.
