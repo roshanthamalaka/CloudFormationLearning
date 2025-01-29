@@ -73,6 +73,18 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
       RouteTableId: !ImportValue HubPrivateRouteTBID # Import the Route Table Value from Route Table stack Template
       SubnetId: !Ref HubVPCPrivateSubnet
     DependsOn:  HubVPCPrivateSubnet
+  SpokeVPCPublicSubnetRTAssociation: 
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !ImportValue SpokePublicRouteTBID # Import the Route Table Value from Route Table stack Template
+      SubnetId: !Ref SpokeVPCPublicSubnet
+    DependsOn: SpokeVPCPublicSubnet
+  SpokeVPCPrivateSubnetRTAssociation: 
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !ImportValue SpokePrivateRouteTBID # Import the Route Table Value from Route Table stack Template
+      SubnetId: !Ref SpokeVPCPrivateSubnet
+    DependsOn: SpokeVPCPrivateSubnet
 Outputs:
         HubVPCID: # Output Logical ID 
           Description: Hub VPC ID

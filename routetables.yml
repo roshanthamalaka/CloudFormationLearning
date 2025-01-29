@@ -15,6 +15,20 @@ Resources:
       Tags:
       - Key: Name
         Value: HubPrivateRouteTable
+  SpokePublicRouteTB:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:  !ImportValue SpokeVPCID
+      Tags:
+      - Key: Name
+        Value: SpokePublicRouteTable
+  SpokePrivateRouteTB:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:  !ImportValue SpokeVPCID
+      Tags:
+      - Key: Name
+        Value: SpokePrivateRouteTable
 Outputs:
     HubPublicRouteTBID: 
         Description: Hub Public Route Table 
@@ -26,3 +40,13 @@ Outputs:
         Value: !Ref HubPrivateRouteTB
         Export:
             Name: HubPrivateRouteTBID
+    SpokePublicRouteTBID: 
+        Description: Hub Public Route Table 
+        Value: !Ref SpokePublicRouteTB # Logical ID/Name of Route Table is passed so Route Table id is returned to Value parameter
+        Export:
+            Name: SpokePublicRouteTBID
+    SpokePrivateRouteTBID: 
+        Description: Hub Public Route Table 
+        Value: !Ref SpokePrivateRouteTB # Logical ID/Name of Route Table is passed so Route Table id is returned to Value parameter
+        Export:
+            Name: SpokePrivateRouteTBID
