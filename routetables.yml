@@ -41,6 +41,18 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId: !ImportValue HubNGWID
       RouteTableId: !Ref HubPrivateRouteTB
+  HubToSpokeRoutePubicRTB: # Create Route Table entry on Hub vpc public subnet attach route table, to route traffic to spoke vpc via peering connection
+    Type: AWS::EC2::Route
+    Properties:  
+      DestinationCidrBlock: 192.168.0.0/16
+      VpcPeeringConnectionId: !ImportValue HubToSpokePeeringID
+      RouteTableId: !Ref HubPublicRouteTB
+  HubToSpokeRoutePvtRTB: # Create Route Table entry on Hub vpc private subnet attach route table, to route traffic to spoke vpc via peering connection
+    Type: AWS::EC2::Route
+    Properties:  
+      DestinationCidrBlock: 192.168.0.0/16
+      VpcPeeringConnectionId: !ImportValue HubToSpokePeeringID
+      RouteTableId: !Ref HubPrivateRouteTB
   SpokePublicDefaultRoute: # Create Route Table entry for Public Subnet of spoke to route traffic via Internet Gateway
     Type: AWS::EC2::Route
     Properties:  
@@ -52,6 +64,18 @@ Resources:
     Properties:  
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId: !ImportValue SpokeNGWID
+      RouteTableId: !Ref SpokePrivateRouteTB
+  SpokeToHubRoutePubicRTB: # Create Route Table entry on Spoke vpc public subnet attach route table, to route traffic to hub vpc via peering connection
+    Type: AWS::EC2::Route
+    Properties:  
+      DestinationCidrBlock: 172.16.0.0/16
+      VpcPeeringConnectionId: !ImportValue HubToSpokePeeringID
+      RouteTableId: !Ref SpokePublicRouteTB
+  SpokeToHubRoutePrivateRTB: # Create Route Table entry on Spoke vpc private subnet attach route table, to route traffic to hub vpc via peering connection
+    Type: AWS::EC2::Route
+    Properties:  
+      DestinationCidrBlock: 172.16.0.0/16
+      VpcPeeringConnectionId: !ImportValue HubToSpokePeeringID
       RouteTableId: !Ref SpokePrivateRouteTB
         
 
