@@ -175,5 +175,10 @@ Outputs:
           Value: !Ref SpokeNATGateway
           Export: 
               Name: SpokeNGWID 
-
+        HubToSpokePeeringID: 
+          Description: Hub to Spoke Peering ID
+          Value: !Ref HubtoSpokePeering
+          Export: 
+              Name: HubToSpokePeeringID
+        
       
