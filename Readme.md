@@ -34,7 +34,21 @@ Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation
 
 Ref Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.
 
-Examine vpc.yml for identify use of intrinsic function Ref, Creation of basic template.
+Examine vpc.yml for identify use of intrinsic function Ref usage, Creation of basic VPC template.
+
+__Gett  Intrinsic Function Usage__
+
+In each resource it has properties and return values. Properties used when creating resource specify certain things. For example if you are creating a vpc you specify address space.  Return values are values returned when resource is created for  example when it comes to  VPC certain things are returned such VPC ID. Those Return valus are required when provisioning certain resources.
+
+If you pass Resource Logical ID and return value to GettAtt  function value is returned. 
+
+For Example refer elastic IP creation and specify it with NAT Gateway in vpc.yml file or refer below documentation.
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html 
+
+In the NAT Gateway resource it requires the Allocation ID for the Elastic IP resource. Then What we have to do to is create the Elastic IP address.
+
+Once Elastic IP address is created using GetAtt intrinsic function We specify the Allocation ID to the NAT Gateway Resource.
+
 
 **Deploy CloudFormation Stack** 
 
@@ -91,7 +105,7 @@ Each Output has
 Once the template run in the cloudformation Console we can see the output values in the Outputs section in the stack.Refer below Screenshot.
 ![Project Screenshot](assets/OutputsInCLoudFormation.png "Outputs in Cloudformation")
 
-<u> Import usage </u> 
+__Import usage__
 
 Once the outputs are defined it can be imported to other stack. If you look at **routetables.yml** which used to create RouteTable Stack using **ImportValue** Function and use the name of the outputs defined in the VPC stack (in the vpc.yml file) we have referenced the VPC ID for each 
 

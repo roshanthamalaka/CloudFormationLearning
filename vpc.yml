@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Example Templates that will deploy two VPCS 
+Description: Example Templates that will deploy two VPCS with Internet Gateway, NAT Gatway. (Entire Network Stack)
 Resources: # Declare What cloudfromation need to be provision one of the compolosory thing
   HubVPC: # This the Resource Name used in the temp
     Type: AWS::EC2::VPC # Resource Type. Refer Template Reference -> Resource and Property Reference to define this https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
@@ -96,6 +96,54 @@ Resources: # Declare What cloudfromation need to be provision one of the compolo
       Tags: 
         - Key: Name
           Value: hub-to-spoke-peering
+  HubInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: Hub_IGW
+  SpokeInternetGateway: 
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: Spoke_IGW
+  HubInternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment # Have to use this Resource Type in order to  Attach Internet Gateway
+    Properties:
+      InternetGatewayId: !Ref HubInternetGateway
+      VpcId: !Ref HubVPC
+  SpokeInternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment # Have to use this Resource Type in order to  Attach Interntet Gateway
+    Properties:
+      InternetGatewayId: !Ref SpokeInternetGateway
+      VpcId: !Ref SpokeVPC
+  HubNGWIP: 
+    Type: AWS::EC2::EIP # Elastic IP creation
+    Properties:
+      Domain: vpc
+  SpokeNGWIP: 
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  HubNATGateway:
+   Type: AWS::EC2::NatGateway
+   Properties:
+      AllocationId: !GetAtt HubNGWIP.AllocationId # Elastic IP has return value called allocation ID. Using GetAtt function Get Allocation ID and specify here 
+      SubnetId: !Ref HubVPCPublicSubnet
+      Tags:
+      - Key: Name
+        Value: HubNATGateway
+  SpokeNATGateway:
+   Type: AWS::EC2::NatGateway
+   Properties:
+      AllocationId: !GetAtt SpokeNGWIP.AllocationId
+      SubnetId: !Ref SpokeVPCPublicSubnet
+      Tags:
+      - Key: Name
+        Value: SpokeNATGateway
+  
+  
 Outputs:
         HubVPCID: # Output Logical ID 
           Description: Hub VPC ID
@@ -107,6 +155,25 @@ Outputs:
           Value: !Ref SpokeVPC 
           Export: 
               Name: SpokeVPCID
-      
+        HubIGWID: 
+          Description: Hub VPC Internet Gateway ID
+          Value: !Ref HubInternetGateway
+          Export: 
+              Name: HubIGWID
+        HubNGWID: 
+          Description: Hub VPC NAT Gateway ID
+          Value: !Ref HubNATGateway
+          Export: 
+              Name: HubNGWID
+        SpokeIGWID: 
+          Description: Spoke VPC Internet Gateway ID
+          Value: !Ref SpokeInternetGateway
+          Export: 
+              Name: SpokeIGWID 
+        SpokeNGWID: 
+          Description: Spoke VPC Internet Gateway ID
+          Value: !Ref SpokeNATGateway
+          Export: 
+              Name: SpokeNGWID 
 
       
