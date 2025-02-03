@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Example Template which will deploy Route Tables for Hub Spoke VPC Subnets
+Description: Example Template which will deploy Route Tables for Hub Spoke VPC Subnets and their Routes
 Resources: 
   HubPublicRouteTB:
     Type: AWS::EC2::RouteTable
@@ -29,6 +29,32 @@ Resources:
       Tags:
       - Key: Name
         Value: SpokePrivateRouteTable
+  HubPublicDefaultRoute: # Create Route Table entry for Public Subnet to route traffic via Internet Gateway
+    Type: AWS::EC2::Route
+    Properties:  
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayID: !ImportValue HubIGWID
+      RouteTableId: !Ref HubPublicRouteTB
+  HubPrivateDefaultRoute: # Create Route Table entry for Private Subnet to route traffic via NAT Gateway
+    Type: AWS::EC2::Route
+    Properties:  
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayID: !ImportValue HubNGWID
+      RouteTableId: !Ref HubPrivateRouteTB
+  SpokePublicDefaultRoute: # Create Route Table entry for Public Subnet of spoke to route traffic via Internet Gateway
+    Type: AWS::EC2::Route
+    Properties:  
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayID: !ImportValue SpokeIGWID
+      RouteTableId: !Ref SpokePublicRouteTB
+  SpokePrivateDefaultRoute: # Create Route Table entry for Public Subnet of spoke to route traffic via Internet Gateway
+    Type: AWS::EC2::Route
+    Properties:  
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayID: !ImportValue SpokeNGWID
+      RouteTableId: !Ref SpokePrivateRouteTB
+        
+
 Outputs:
     HubPublicRouteTBID: 
         Description: Hub Public Route Table 
