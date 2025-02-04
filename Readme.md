@@ -166,6 +166,7 @@ When we create a resource using cloudformation then we edited the resource using
 ![Project Screenshot](assets/DriftActualandExpected.png "Drift Results") 
 
 **Deletion Of Stacks** 
+
 We can delete stack by clicking delete. If stacks has resource which is used by other stacks We have to delete that stacks first. Otherwise it will not be allowed. This is called circular dependcy. 
 
 In here route table has outputs which are referenced by vpc stack. VPC stack has outputs which are referenced by the Route table stack. So if we try to delete stack this will have issue. For this I have to manually delete all the resources.Becareful when using cross stack reference.
