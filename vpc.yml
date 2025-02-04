@@ -180,5 +180,26 @@ Outputs:
           Value: !Ref HubtoSpokePeering
           Export: 
               Name: HubToSpokePeeringID
+        HubVPCPublicSubnetID:
+          Description: Hub VPC public subnet ID
+          Value: !Ref HubVPCPublicSubnet
+          Export: 
+              Name: HubVPCPublicSubnetID
+        HubVPCPrivateSubnetID:
+          Description: Hub VPC private subnet ID
+          Value: !Ref HubVPCPrivateSubnet
+          Export: 
+              Name: HubVPCPrivateSubnetID
+        SpokeVPCPublicSubnetID:
+          Description: Spoke VPC public subnet ID
+          Value: !Ref SpokeVPCPublicSubnet
+          Export: 
+              Name: SpokeVPCPublicSubnetID
+        SpokeVPCPrivateSubnetID:
+          Description: Spoke VPC public subnet ID
+          Value: !Ref SpokeVPCPrivateSubnet
+          Export: 
+              Name: SpokeVPCPrivateSubnetID
+        
         
       

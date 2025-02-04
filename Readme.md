@@ -135,3 +135,19 @@ IF we click View Details can see what is going to be changed in more details as 
 ![Project Screenshot](assets/PropertyLevelChange.png "Property Level Changes")
 
 IF you are ok with the change click on "Execute Change Set on top". After that it will update the stack
+
+**Use of Maps in Cloudfromation**
+
+Refer serverstack.yml. In here we specify the AMID in a map. Map contains AMID for each region. Then using Findinmap function we access the AMID value for each region with the key.
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/mappings-section-structure.html
+
+**About EC2 Instance Creation** 
+
+When creating EC2 instace. We need to specify the Security Group and the Key pair to login to EC2.
+
+We can create a new key pair or use an exsisting keypair an upload it to AWS. In here I have created new key pair. When creating a new keypair as here , newly created key pair will be available in the SSM parameter store,with a parameter name "/ec2/keypair/<key-id>". View can view that that private key and create a pem file and SSH into the server.
+
+When creating Security Group Lets say we want to allow all the ports. In this case you have to specify From Port 0 to To Port 65535.
+IF we want allow specific port (let say SSH) From port and To port value will be same (Both are 22).
+
+Refer serverstack.yml in order to understand this fully.
