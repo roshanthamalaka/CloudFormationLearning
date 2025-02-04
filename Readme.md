@@ -164,3 +164,16 @@ When we create a resource using cloudformation then we edited the resource using
 ![Project Screenshot](assets/DriftResults.png "Drift Detection")
 5. Then We can select a drifted resource and Click on "View Drift Result". This will show Expected and Actual Result. Then we can edit our template or discard our changes.
 ![Project Screenshot](assets/DriftActualandExpected.png "Drift Results") 
+
+**Deletion Of Stacks** 
+We can delete stack by clicking delete. If stacks has resource which is used by other stacks We have to delete that stacks first. Otherwise it will not be allowed. This is called circular dependcy. 
+
+In here route table has outputs which are referenced by vpc stack. VPC stack has outputs which are referenced by the Route table stack. So if we try to delete stack this will have issue. For this I have to manually delete all the resources.Becareful when using cross stack reference.
+
+ After that to delete the stacks completely.
+
+1. Delete the Route Table association from vpc stack
+2. Then Delete the route table stack
+3. Then delete the VPC Stack
+
+In production Route Table and VPC should placed in same stack. I have used like this to practise import and exports
