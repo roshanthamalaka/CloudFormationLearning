@@ -61,6 +61,10 @@ Resources:
         FromPort: 22
         ToPort: 22
         CidrIp: 192.168.0.0/16
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 172.16.0.0/16
     SecurityGroupEgress:
       - IpProtocol: tcp
         FromPort: 0 
