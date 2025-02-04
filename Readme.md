@@ -151,3 +151,16 @@ When creating Security Group Lets say we want to allow all the ports. In this ca
 IF we want allow specific port (let say SSH) From port and To port value will be same (Both are 22).
 
 Refer serverstack.yml in order to understand this fully.
+
+**Cloudformation Drifts** 
+
+When we create a resource using cloudformation then we edited the resource using manually. In this case drift  will occur. We can detect drift of a stack below way.
+
+1. Go to Paritcular Stack 
+2. Click on "Stack Options" --> Detect Drift 
+3. Wait for Some time then We can detect the results by click on "Stack Options" --> View Drift Results or Just Clicking the dirfts
+![Project Screenshot](assets/DriftDetection.png "Drift Detection")
+4. Drift Results show like below 
+![Project Screenshot](assets/DriftResults.png "Drift Detection")
+5. Then We can select a drifted resource and Click on "View Drift Result". This will show Expected and Actual Result. Then we can edit our template or discard our changes.
+![Project Screenshot](assets/DriftActualandExpected.png "Drift Results") 
