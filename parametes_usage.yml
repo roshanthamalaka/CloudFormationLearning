@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Example Templates that uses parameters 
+Parameters: 
+    NameforBucket: # Parameter Name or Paramete Logical ID 
+        Description: Name of The S3 BucketName
+        Type: String
+Resources: # Declare What cloudfromation need to be provision one of the compolosory thing
+    DemoBucket: 
+      Type: AWS::S3::Bucket
+      Properties:
+          BucketName: !Ref NameforBucket
+          
