@@ -178,3 +178,15 @@ In here route table has outputs which are referenced by vpc stack. VPC stack has
 3. Then delete the VPC Stack
 
 In production Route Table and VPC should placed in same stack. I have used like this to practise import and exports
+
+**Parameter Usage**
+
+Refer parametes_usage.yml cloudfromation stack template to understand how to use parameters. Parameters improves reusability of the template. 
+
+In this Template as a We provide the Bucket name as the parameter. When we deploy Cloudformation stack in respective region it will provision the resource. 
+
+Lets say we want to update the configuration. We can edit the the stack and provide the parameter without reuploading the template. Refer below screenshots
+![Project Screenshot](assets/ParameterUpdate1.png "Update Template") 
+![Project Screenshot](assets/ParameterUpdate2.png "Update Name") 
+
+Once the parameter is defined you can refer the parameter using Ref function
