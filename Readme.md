@@ -193,3 +193,49 @@ Lets say we want to update the configuration. We can edit the the stack and prov
 
 
 Once the parameter is defined you can refer the parameter using Ref function
+
+
+
+**How to Create CloudWatch Alarms Using CloudFormation**
+
+To Create a Alarm Via CloudFormation, Use Resource document below
+
+https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cloudwatch-alarm.html
+
+However Argument example are not very clear in this document. For Exact Argument Reference and examples Refer below documentation.
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html
+
+This is the CloudFormation API Refernce Documentation. Using this documentation We can configure exact parameters shown in the portal with Cloudformation Template.
+
+Refer below CloudFormation Code How to create RDS Alarm if the average CPU utilization greater than 70 for moe than three minutes
+
+ProdIoTVisionDBCPUAlarmReaderInstance: 
+  Type: AWS::CloudWatch::Alarm
+  Properties:
+    ActionsEnabled: True
+    AlarmActions: 
+      - !Ref PRDAlertSNS # SNS Topic to Trigger can trigger multiple
+    AlarmDescription: CPU Utilization Monitor for the Reader Instance if CPU Average greater than or equal 70 for five consecutive minutes
+    AlarmName: ProdIoTVisionDBCPUAlarmReaderInstance
+    ComparisonOperator: GreaterThanOrEqualToThreshold
+    DatapointsToAlarm: 5
+    Dimensions: 
+      - Name: DBInstanceIdentifier
+        Value: mydbname
+    EvaluationPeriods: 5
+    InsufficientDataActions: 
+      - !Ref PRDAlertSNS # When Alarm is InsufficientData Notify
+    MetricName: CPUUtilization
+    Namespace: AWS/RDS
+    OKActions: 
+      - !Ref PRDAlertSNS # When Alarm is OK Notify
+    Period: 60
+    Statistic: Average
+    Tags: 
+      - Key: Name
+        Value: ProdIoTVisionDBCPUAlarmReaderInstance
+    Threshold: 70
+    TreatMissingData: missing
+    Unit: Percent # Since CPU utilization it is percentage
+
+
