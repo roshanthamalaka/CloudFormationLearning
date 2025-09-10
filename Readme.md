@@ -28,7 +28,9 @@ Instrinsic Func !Ref Can be used to reference
 
 2. Previously created resource 
     
-Whenever Logical ID/Name is passed to Ref function resource ID is returned. See templates Ref function usage
+Whenever Logical ID/Name is passed to the Ref function specific retrun value will be returned.For example if it EC2 Instace instance ID is returned. If it is SNS Topic,Arn is Returned. In each resource documentation there will be a section called ref which will tell what will be returned exactly when resource is created. 
+
+See templates Ref function usage
 
 Instrinsic Function Documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html
 
@@ -188,5 +190,6 @@ In this Template as a We provide the Bucket name as the parameter. When we deplo
 Lets say we want to update the configuration. We can edit the the stack and provide the parameter without reuploading the template. Refer below screenshots
 ![Project Screenshot](assets/ParameterUpdate1.png "Update Template") 
 ![Project Screenshot](assets/ParameterUpdate2.png "Update Name") 
+
 
 Once the parameter is defined you can refer the parameter using Ref function
