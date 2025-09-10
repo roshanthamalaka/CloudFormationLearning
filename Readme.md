@@ -209,33 +209,41 @@ This is the CloudFormation API Refernce Documentation. Using this documentation 
 
 Refer below CloudFormation Code How to create RDS Alarm if the average CPU utilization greater than 70 for moe than three minutes
 
-ProdIoTVisionDBCPUAlarmReaderInstance: 
+### CloudWatch Alarm for RDS Reader Instance
+
+The following CloudFormation snippet creates a CloudWatch Alarm that monitors the **CPU Utilization** of an RDS Reader instance.  
+It triggers when the CPU average is **≥ 70% for 5 consecutive minutes**, and sends notifications to the specified **SNS Topic**.
+
+```yaml
+ProdDBCPUAlarmReaderInstance:
   Type: AWS::CloudWatch::Alarm
   Properties:
     ActionsEnabled: True
-    AlarmActions: 
-      - !Ref PRDAlertSNS # SNS Topic to Trigger can trigger multiple
-    AlarmDescription: CPU Utilization Monitor for the Reader Instance if CPU Average greater than or equal 70 for five consecutive minutes
-    AlarmName: ProdIoTVisionDBCPUAlarmReaderInstance
+    AlarmActions:
+      - !Ref PRDAlertSNS   # SNS Topic to trigger, can trigger multiple
+    AlarmDescription: CPU Utilization Monitor for the Reader Instance if CPU Average >= 70 for five consecutive minutes
+    AlarmName: AlarmName
     ComparisonOperator: GreaterThanOrEqualToThreshold
     DatapointsToAlarm: 5
-    Dimensions: 
+    Dimensions:
       - Name: DBInstanceIdentifier
         Value: mydbname
     EvaluationPeriods: 5
-    InsufficientDataActions: 
-      - !Ref PRDAlertSNS # When Alarm is InsufficientData Notify
+    InsufficientDataActions:
+      - !Ref PRDAlertSNS   # When alarm is InsufficientData, notify
     MetricName: CPUUtilization
     Namespace: AWS/RDS
-    OKActions: 
-      - !Ref PRDAlertSNS # When Alarm is OK Notify
+    OKActions:
+      - !Ref PRDAlertSNS   # When alarm is OK, notify
     Period: 60
     Statistic: Average
-    Tags: 
+    Tags:
       - Key: Name
-        Value: ProdIoTVisionDBCPUAlarmReaderInstance
+        Value: AlarmName
     Threshold: 70
     TreatMissingData: missing
-    Unit: Percent # Since CPU utilization it is percentage
+    Unit: Percent   # Since CPU utilization is a percentage
+
+
 
 
