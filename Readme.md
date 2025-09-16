@@ -245,5 +245,7 @@ ProdDBCPUAlarmReaderInstance:
     Unit: Percent   # Since CPU utilization is a percentage
 
 
+Depening on the alarm choose appropriate unit. If it CPU its percentage, If it is memory Bytes, If it is IOPS Count per Second. To better understand this. Create Alarm from the console and you can see the unit there from the metric Graph. Then Write the CloudFormation Alarm.
+
 
 
